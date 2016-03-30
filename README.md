@@ -12,8 +12,10 @@ For me, on Ubuntu 15.10, this meant running:
 echo "deb https://apt.dockerproject.org/repo ubuntu-wily main" |  sudo tee --append /etc/apt/sources.list.d/docker.list
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 sudo apt-get update
-sudo apt-get install docker-engine pip
+sudo apt-get install docker-engine python-pip
 sudo pip install docker-compose
+sudo usermod -aG docker `whoami`
+exit
 ```
 
 ### Local dev environment

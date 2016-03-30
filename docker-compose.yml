@@ -57,16 +57,10 @@ services:
     links:
      - mysql_for_auth
     volumes:
-     - ./reference-auth/webapp/src/main/resources/db/openidconnect/mysql:/oic
+     - ./reference-auth-server-webapp/src/main/resources/db/openidconnect/mysql:/oic
      - ./reference-apps/src/main/resources/db/openidconnect/mysql:/starter
-     - ./reference-api/reference-api-mysql/src/main/resources/db/openidconnect/mysql:/api
-
-    command: sh -c "cd /oic ; \
-                    mysql -h mysql_for_auth -u root -ppassword oic < mysql_auth_install.sql ; \
-                    cd /starter ; 
-                    mysql -h mysql_for_auth -u root -ppassword oic < fhir-starter-client.sql; \
-                    cd /api; \
-                    mysql -h mysql_for_auth -u root -ppassword oic < resource-server-client.sql"
+     - ./reference-api-mysql/src/main/resources/db/openidconnect/mysql:/api
+    command: sh -c "cd /oic; mysql -h mysql_for_auth -u root -ppassword oic < mysql_auth_install.sql; cd /starter; mysql -h mysql_for_auth -u root -ppassword oic < fhir-starter-client.sql; cd /api; mysql -h mysql_for_auth -u root -ppassword oic < resource-server-client.sql"
   app:
     build: .
     command: app-server
