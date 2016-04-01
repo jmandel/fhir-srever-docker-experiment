@@ -23,5 +23,5 @@ exit
 Bring up the stack
 
 ```
-docker-compose -f docker-compose-dev.yml up
+docker-compose -f docker-compose.yml up
 ```
