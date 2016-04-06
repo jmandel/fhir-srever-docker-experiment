@@ -35,7 +35,6 @@ services:
      - fhir-internal
     links:
      - mysql_for_auth
-     - data_loader_for_auth
     environment:
       MYSQL_ENDPOINT: "mysql_for_auth:3306"
       ISSUER_URL: "http://hspc-stack:9001/"
@@ -50,17 +49,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "password"
       MYSQL_DATABASE: "oic"
-  data_loader_for_auth:
-    image: "mysql:latest"
-    networks:
-     - fhir-internal
-    links:
-     - mysql_for_auth
-    volumes:
-     - ./reference-auth-server-webapp/src/main/resources/db/openidconnect/mysql:/oic
-     - ./reference-apps/src/main/resources/db/openidconnect/mysql:/starter
-     - ./reference-api-mysql/src/main/resources/db/openidconnect/mysql:/api
-    command: sh -c "cd /oic; mysql -h mysql_for_auth -u root -ppassword oic < mysql_auth_install.sql; cd /starter; mysql -h mysql_for_auth -u root -ppassword oic < fhir-starter-client.sql; cd /api; mysql -h mysql_for_auth -u root -ppassword oic < resource-server-client.sql"
   app:
     build: .
     command: app-server
