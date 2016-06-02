@@ -1,9 +1,0 @@
-[submodule "reference-api-mysql"]
-	path = reference-api-mysql
-	url = https://bitbucket.org/hspconsortium/reference-api-mysql
-[submodule "reference-apps"]
-	path = reference-apps
-	url = https://bitbucket.org/hspconsortium/reference-apps
-[submodule "reference-auth-server-webapp"]
-	path = reference-auth-server-webapp
-	url = https://bitbucket.org/hspconsortium/reference-auth-server-webapp

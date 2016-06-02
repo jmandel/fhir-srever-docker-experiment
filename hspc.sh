@@ -15,7 +15,7 @@ for repo in reference-auth-security \
             java-client \
             tools \
             examples; do
-    git clone -b develop --depth 1 https://bitbucket.org/hspconsortium/$repo
+    git clone -b smart-dstu2 --depth 1 https://github.com/nschwertner/$repo
 done
 
 mvn install -f reference-impl/pom.xml

@@ -13,8 +13,9 @@ services:
     environment:
       MYSQL_ENDPOINT: "mysql_for_api:3306"
       MYSQL_DB: "hapi_pu"
+#      SECURITY_MODE: "open"
       SECURITY_MODE: "secured"
-      AUTH_SERVER_URL: "http://hspc-stack:9001"
+      AUTH_SERVER_URL: "http://hspc.smarthealthit.org:9001"
     extra_hosts:
      - "hspc-stack:172.17.0.1"
   mysql_for_api:
@@ -37,9 +38,9 @@ services:
      - mysql_for_auth
     environment:
       MYSQL_ENDPOINT: "mysql_for_auth:3306"
-      ISSUER_URL: "http://hspc-stack:9001/"
-      FHIR_SERVER_URL: "http://hspc-stack:9002/data"
-      APP_SERVER_URL: "http://hspc-stack:9000/static/"
+      ISSUER_URL: "http://hspc.smarthealthit.org:9001/"
+      FHIR_SERVER_URL: "http://hspc.smarthealthit.org:9002/data"
+      APP_SERVER_URL: "http://localhost:9000/static/"
   mysql_for_auth:
     image: "mysql:latest"
     networks:

@@ -8,8 +8,8 @@ echo "...database ready!"
 
 cd /hspc-build/reference-auth-server-webapp/src/main/resources/db/openidconnect/mysql
 mysql -h mysql_for_auth -u root -ppassword oic < mysql_auth_install.sql
-cd /hspc-build/reference-apps/src/main/resources/db/openidconnect/mysql
-mysql -h mysql_for_auth -u root -ppassword oic < fhir-starter-client.sql
+#cd /hspc-build/reference-apps/src/main/resources/db/openidconnect/mysql
+#mysql -h mysql_for_auth -u root -ppassword oic < fhir-starter-client.sql
 cd /hspc-build/reference-api-mysql/src/main/resources/db/openidconnect/mysql
 mysql -h mysql_for_auth -u root -ppassword oic < resource-server-client.sql
 echo "Done setting up database"
