@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  auth:
+    build: .
+    command: auth-server
+    ports:
+     - "9001:8080"
+    networks:
+     - fhir-internal
+    links:
+     - mysql_for_auth
+    environment:
+      MYSQL_ENDPOINT: "mysql_for_auth:3306"
+      ISSUER_URL: "http://hspc.smarthealthit.org:9001/"
+      FHIR_SERVER_URL: "http://hspc.smarthealthit.org:9002/data"
+      APP_SERVER_URL: "http://localhost:9000/static/"
+  mysql_for_auth:
+    image: "mysql:latest"
+    networks:
+     - fhir-internal
+    volumes:
+     - auth_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "oic"
+volumes:
+  auth_data:
+    driver: local
+
+networks:
+  fhir-internal:
+    driver: bridge
